@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from decouple import config
 
+from django.contrib.messages import constants as messages
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'vendor',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +89,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -125,7 +131,18 @@ STATICFILES_DIRS = [
     'foodOnline_main/static'
 ]
 
+
+# Media File Configurations
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+}
